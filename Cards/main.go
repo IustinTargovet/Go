@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	deck := newDeck()
-	hand, remainingDeck := deal(deck, 11)
+	hand, remainingDeck := deal(deck, 12)
 	fmt.Println(hand)
 	fmt.Println(remainingDeck)
 }

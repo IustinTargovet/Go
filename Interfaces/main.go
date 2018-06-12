@@ -9,7 +9,6 @@ type bot interface {
 }
 
 type englishBot struct{}
-
 type spanishBot struct{}
 
 func (englishBot) getGreeting() string {
@@ -26,8 +25,8 @@ func printGreeting(b bot) {
 
 func main() {
 	var eb englishBot
-	printGreeting(eb)
 	var sb spanishBot
+	printGreeting(eb)
 	printGreeting(sb)
 
 }

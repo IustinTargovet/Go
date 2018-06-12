@@ -7,7 +7,7 @@ import (
 type person struct {
 	firstName string
 	lastName  string
-	contact   contactInfo
+	contactInfo
 }
 
 type contactInfo struct {
@@ -15,15 +15,25 @@ type contactInfo struct {
 	zip   int
 }
 
+func (p person) print() {
+	fmt.Printf("%+v", p)
+}
+
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
+}
+
 func main() {
 	alex := person{
 		firstName: "Alex",
 		lastName:  "Moran",
-		contact: contactInfo{
+		contactInfo: contactInfo{
 			email: "alex.moran@yahoo.com",
-			zip:   1092,
+			zip:   102,
 		},
 	}
-	fmt.Println(alex.lastName)
-	fmt.Printf("%+v", alex)
+	alex.print()
+	alexPointer := &alex
+	alexPointer.updateName("Alecu")
+	alex.print()
 }

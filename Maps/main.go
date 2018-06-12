@@ -4,11 +4,26 @@ import (
 	"fmt"
 )
 
-func main() {
-	colors := map[string]string{
-		"red":   "#ff0000",
-		"green": "#00ff00",
-		"blue":  "#0000ff",
+func printMap(c map[int]string) {
+	for i, color := range c {
+		if i == 1 {
+			fmt.Println("first color is", color)
+		}
+		if i == 2 {
+			fmt.Println("second color is", color)
+		}
+		if i == 3 {
+			fmt.Println("third color is", color)
+		}
 	}
-	fmt.Println(colors)
+}
+
+func main() {
+	colors := map[int]string{
+		1: "red",
+		2: "green",
+		3: "blue",
+	}
+
+	printMap(colors)
 }

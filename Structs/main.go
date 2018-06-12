@@ -33,7 +33,6 @@ func main() {
 		},
 	}
 	alex.print()
-	alexPointer := &alex
-	alexPointer.updateName("Alecu")
+	alex.updateName("Alecu")
 	alex.print()
 }

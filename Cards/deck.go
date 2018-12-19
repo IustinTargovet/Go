@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
+	"os"
 	"strings"
+	"time"
 )
 
 //Create a new type "deck"
@@ -33,9 +36,7 @@ func deal(d deck, handSize int) (deck, deck) {
 }
 
 func (d deck) toString() string {
-	auxString := strings.Join([]string(d), ",")
-
-	return auxString
+	return strings.Join([]string(d), ", ")
 }
 
 func (d deck) toByteSlice() []byte {
@@ -49,8 +50,30 @@ func (d deck) saveToFile() {
 	}
 }
 
+func deckFromByteSlice(bs []byte) deck {
+	return deck(strings.Split(string(bs), ", "))
+}
+
+func newDeckFromFile(fileName string) deck {
+	bs, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return deckFromByteSlice(bs)
+}
+
 func (d deck) print() {
 	for _, card := range d {
 		fmt.Println(card)
+	}
+}
+
+func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }
